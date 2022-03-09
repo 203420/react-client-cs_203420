@@ -48,6 +48,25 @@ label{
 .input:focus{
     border: 0.20em solid #54b4a7;
 }
+.password{
+    width: 100%;
+    display: flex;
+}
+#passw{
+    margin-left: 10%;
+    width: calc(80% - 2.6em);
+}
+#passw2{
+    margin-left: 10%;
+    width: calc(80% - 2.6em);
+}
+#passwImg{
+    margin-bottom: -0.8em;
+    border-radius: 0;
+    height: 3.2em;
+    width: 2.6em;
+    opacity: 0.9;
+}
 
 .button{
     background-color: #54b4a7;
@@ -113,6 +132,22 @@ link{
     a{
         font-size: 0.75rem;
     }
+    #passw{
+        margin-left: 10%;
+        width: calc(80% - 2em);
+    }
+    #passw2{
+        margin-left: 10%;
+        width: calc(80% - 2em);
+    }
+    #passwImg{
+        margin-bottom: -0.8em;
+        border-radius: 0;
+        height: 2.6em;
+        width: 2em;
+        opacity: 0.9;
+    }
+    
     .form-box{
         width: 100%;
     }

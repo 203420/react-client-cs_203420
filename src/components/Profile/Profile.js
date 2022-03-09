@@ -126,7 +126,10 @@ function App() {
         }).then((response) => {
             console.log(response.data);
             
-            localStorage.removeItem('username', 'email', 'first_name', 'last_name')
+            localStorage.removeItem('username')
+            localStorage.removeItem('email')
+            localStorage.removeItem('first_name')
+            localStorage.removeItem('last_name')
 
             localStorage.setItem('username', response.data.username)
             localStorage.setItem('email', response.data.email)
@@ -139,6 +142,24 @@ function App() {
         });
         
     }
+
+    const borrar_perfil = () =>{
+        var url = "http://localhost:8000/api/v1/userprofile/data/" + localStorage.getItem('id')
+        axios.delete(url, {
+            headers: {
+                "Content-Type": "application/json", 'Authorization': 'Token ' + localStorage.getItem('tokenLocal'),
+            },
+        })
+            .then((response) => {
+                console.log(response.data)
+                cerrar_sesion()
+            })
+            .catch((error) => {
+                //alert("Error")
+                console.log(error.response.data)
+            })
+    }
+
 
     const mostrar_formulario = () =>{
         document.getElementById('background').style.display = "block"
@@ -153,7 +174,12 @@ function App() {
     }
 
     const cerrar_sesion = () =>{
-        localStorage.removeItem('id', 'tokenLocal', 'username', 'email', 'first_name', 'last_name')
+        localStorage.removeItem('id')
+        localStorage.removeItem('tokenLocal')
+        localStorage.removeItem('username')
+        localStorage.removeItem('email')
+        localStorage.removeItem('first_name')
+        localStorage.removeItem('last_name')
         window.location = "/"
     }
 
@@ -161,7 +187,7 @@ function App() {
 
     return (
         <>
-            <div id='background'></div>
+            <div id='background' onClick={ocultar_formulario}></div>
             <div id="container"> 
                 <div id='data'>  
                     <img id="img" src="http://localhost:8000/assets/img/defaultUser.png" alt="error"></img>
@@ -172,8 +198,10 @@ function App() {
                         <span className='text'>{data.email}</span>
                     </div>
                 </div>
-                <button id='edit' onClick={mostrar_formulario}>Editar perfil</button>
-                <button id='close' onClick={cerrar_sesion}>Salir</button>
+                <div id="buttons"> 
+                    <button id='edit' onClick={mostrar_formulario}>Editar perfil</button>
+                    <button id='close' onClick={cerrar_sesion}>Salir</button>
+                </div>
             </div>
 
             <div className="forms" id='formImg'>
@@ -195,7 +223,7 @@ function App() {
                 <input className="inputText" id='fname' type="text" placeholder="Nombre" defaultValue={data.first_name}></input>
                 <label className="formProfile">Apellidos:</label>
                 <input className="inputText" id='lname' type="text" placeholder="Apellidos" defaultValue={data.last_name}></input>
-                <div id='options'><button id='exit' onClick={ocultar_formulario}>Salir</button>   <button id='send' onClick={editar_perfil}>Guardar</button> </div>
+                <div id='options'><button id='exit' onClick={borrar_perfil}>Eliminar perfil</button>   <button id='send' onClick={editar_perfil}>Guardar</button> </div>
             </div>
         </>
     );

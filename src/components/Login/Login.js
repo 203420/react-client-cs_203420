@@ -1,9 +1,12 @@
 import axios from 'axios';
 import './Login.css';
-import React from 'react';
+import imgPassw from '../../img/password.png'
 import { NavLink } from "react-router-dom"
+import { useState } from "react";
 
 function App() {
+
+    const [passwordShown, setPasswordShown] = useState(false);
 
     const consumir_login = () => {
 
@@ -28,16 +31,13 @@ function App() {
 
         })
         .catch((error) => {
-            console.log(error.response.data.password[0])
-            console.log(error.response.data.username[0])
+            console.log(error.response.data)
         })
 
     }
 
     const ver_contraseña = () => {
-        var tipo = document.getElementById('passw').value
-        var check = document.getElementById('checkbox').value
-      
+        setPasswordShown(!passwordShown);
     }
 
     return (
@@ -48,11 +48,13 @@ function App() {
                     <label className='texto'>Usuario:</label> 
                     <input className="input" id="user" type="text" placeholder="Usuario"/>
                     <label className='texto'>Contraseña:</label> 
-                    <input className="input" id="passw" type="password" placeholder="Contraseña"/>
-                    <div> <input type="checkbox" id='checkbox'/>  ver contraseña</div>
+                    <div className='password'>  
+                        <input className="input" id="passw" type={passwordShown ? "text" : "password"} placeholder="Contraseña"/>
+                        <img id="passwImg" alt='error' onClick={ver_contraseña} src={imgPassw}></img>
+                    </div>
                     <input type="submit" onClick={consumir_login} className="button" value="Enviar"/>
                     <br></br>
-                    <NavLink  id="link" to="/register"><div id='link'>¿Tienes una cuenta?</div></NavLink>
+                    <NavLink  id="link" to="/register"><div id='link'>¿No tienes una cuenta?</div></NavLink>
                 </div>
             </div>
         </>

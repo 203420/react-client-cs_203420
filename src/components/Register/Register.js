@@ -1,13 +1,12 @@
 import axios from "axios";
 import './Register.css';
+import imgPassw from '../../img/password.png'
 import { NavLink } from "react-router-dom"
+import { useState } from "react";
 
 function App(){
 
-    const obtener_local = () =>{
-        localStorage.removeItem('token');
-        alert(localStorage.getItem('tokenLocal'));
-    }
+    const [passwordShown, setPasswordShown] = useState(false);
     
     const register = () =>{
         var postData = {
@@ -20,7 +19,7 @@ function App(){
         }
 
         axios.post("http://localhost:8000/api/v1/registro/",postData,{
-            Headers: { "Content-Type": "application/json", 'Authorization': 'Bearer my-token',
+            Headers: { "Content-Type": "application/json", 'Token ': localStorage.getItem('tokenLocal'),
         },  
         })
         .then((response) => {
@@ -31,6 +30,10 @@ function App(){
             alert("Error")
             console.log(error.response.data)
         })
+    }
+
+    const ver_contraseña = () => {
+        setPasswordShown(!passwordShown);
     }
 
     return(
@@ -47,12 +50,18 @@ function App(){
                     <label>Email:</label>
                     <input className="input" id="email" type="text" placeholder="Email"/>
                     <label>Contraseña:</label> 
-                    <input className="input" id="passw" type="text" placeholder="Contraseña"/>
+                    <div className='password'>  
+                        <input className="input" id="passw" type={passwordShown ? "text" : "password"} placeholder="Contraseña"/>
+                        <img id="passwImg" alt='error' onClick={ver_contraseña} src={imgPassw}></img>
+                    </div> 
                     <label>Contraseña:</label> 
-                    <input className="input" id="passw2" type="text" placeholder="Contraseña"/>
+                    <div className='password'>  
+                        <input className="input" id="passw2" type={passwordShown ? "text" : "password"} placeholder="Contraseña"/>
+                        <img id="passwImg" alt='error' onClick={ver_contraseña} src={imgPassw}></img>
+                    </div> 
                     <input type="submit" onClick={register} className="button" value="Enviar"/>
                     <br></br>
-                    <NavLink  id="link" to="/"><div id='link'>¿No tienes una cuenta?</div></NavLink>
+                    <NavLink  id="link" to="/"><div id='link'>¿Tienes una cuenta?</div></NavLink>
                 </div>
             </div>
         
