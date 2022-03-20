@@ -29,7 +29,8 @@ label{
     text-align: left;
 }
 .input{
-    border: 1px solid #909090;
+    border: 1px solid;
+    border-color: #909090;
     border-radius: 0.3em;
     display: inline-block;
     margin-bottom: 2.5em;
@@ -43,7 +44,8 @@ label{
     transition: 0.5s;
 }
 .input:focus{
-    border: 0.20em solid #54b4a7;
+    border: 0.20em solid;
+    border-color: #54b4a7;
 }
 .password{
     width: 100%;

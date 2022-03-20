@@ -1,7 +1,7 @@
 import axios from 'axios';
 import './Profile.css'
 
-function App() {
+function Profile() {
 
     var data = {
         username: "",
@@ -155,7 +155,6 @@ function App() {
                 cerrar_sesion()
             })
             .catch((error) => {
-                //alert("Error")
                 console.log(error.response.data)
             })
     }
@@ -230,4 +229,4 @@ function App() {
 
 }
 
-export default App;
+export default Profile;

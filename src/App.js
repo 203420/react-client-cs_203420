@@ -1,4 +1,3 @@
-import './App.css';
 import { BrowserRouter as Router, Route, NavLink, Routes, BrowserRouter } from "react-router-dom";
 import Login from './components/Login/Login'
 import Register from './components/Register/Register'
@@ -14,7 +13,6 @@ function App() {
                 <Route exact path="/profile" element={<Profile/>}/>
             </Routes>
         </BrowserRouter>
-            
         </>
     )
 }

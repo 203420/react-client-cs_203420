@@ -4,7 +4,7 @@ import imgPassw from '../../img/password.png'
 import { NavLink } from "react-router-dom"
 import { useState } from "react";
 
-function App(){
+function Register(){
 
     const [passwordShown, setPasswordShown] = useState(false);
     
@@ -68,4 +68,4 @@ function App(){
     )
 }
 
-export default App;
+export default Register;

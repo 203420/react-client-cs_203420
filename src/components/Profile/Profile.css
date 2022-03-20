@@ -87,7 +87,8 @@ h2{
 }
 
 .inputText{
-    border: 1px solid #909090;
+    border: 1px solid;
+    border-color: #909090;
     border-radius: 0.2em;
     display: inline-block;
     font-weight: 400;
@@ -104,7 +105,8 @@ h2{
     transition: 0.5s;
 }
 .inputText:focus{
-    border: 0.15em solid #54b4a7;
+    border: 0.15em solid;
+    border-color: #54b4a7;
 }
 
 button{
